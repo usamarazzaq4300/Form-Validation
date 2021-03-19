@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-4.0.0\bootstrap-4.0.0\dist\css\bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Form Validation</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8" style="background-color: rgb(221, 214, 214);" >
+                <div>
+                    <h2 id="mainPart">Complete Form Validation using JavaScript</h2>
+                </div>
+                <div>
+                    <form action="" autocomplete="off">
+                        <span>User Name:</span><br>
+                        <input class="css" type="text" id="name"><br>
+                        <span id="nameError"></span>
+                        <br>
+                        <span>Password:</span><br>
+                        <input class="css" type="password" id="password"><br>
+                        <span id="passwordError"></span>
+                        <br>
+                        <span>Confirm Password:</span><br>
+                        <input class="css" type="password" id="ConfirmPassword"><br>
+                        <span id="ConfirmPasswordError"></span>
+                        <br>
+                        <span>Mobile Number:</span><br>
+                        <input class="css" type="text" id="Mobile"><br>
+                        <span id="numberError"></span>
+                        <br>
+                        <span>Email:</span><br>
+                        <input class="css" type="email" id="email"><br>
+                        <span id="emailerror"></span>
+                        <br>
+                        <input onclick="return validating()" onclick="password()" id="btn" type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function validating()
+        {
+            // Validating user name
+            var name = document.getElementById("name").value;
+            var nameLength = name.length
+            document.getElementById("nameError").style.color= "red"
+            if(nameLength<=0)
+            {
+                document.getElementById("nameError").innerHTML = "*This is required field."
+                return false
+            }
+            else if (nameLength>0 && ( nameLength < 5 || nameLength > 12)) 
+            {
+                document.getElementById("nameError").innerHTML = "*User ID must contain 5 to 12 characters."
+                return false
+            }
+            
+            // validating password
+            var password = document.getElementById("password").value;
+            var password_length = password.length;
+            document.getElementById("passwordError").style.color= "red"
+            if(password_length>0 && (password_length < 5 || password_length > 12)) 
+            {
+                document.getElementById("passwordError").innerHTML = "*Password must contain 5 to 12 characters."
+                return false
+            }
+            else if (password_length ==0)
+            {
+                document.getElementById("passwordError").innerHTML = "*This is required field."
+                return false
+            }
+            
+
+            // validating confirm password
+            var ConfirmPassword = document.getElementById("ConfirmPassword").value ;
+            document.getElementById("ConfirmPasswordError").style.color = "red"
+            if(ConfirmPassword!=password)
+            {
+                document.getElementById("ConfirmPasswordError").innerHTML = "*Password not match!"
+                return false
+            }
+
+            // validating Number
+            var Number = document.getElementById("Mobile").value;
+            document.getElementById("numberError").style.color="red"
+            if(Number.length <=0)
+            {
+                document.getElementById("numberError").innerHTML = "*This is required field."
+                return false
+            }
+            if(isNaN(Number))
+            {
+                document.getElementById("numberError").innerHTML = "*Characters are not allowed in Number field."
+                return false
+            }
+
+            // Validating Email
+            var Email = document.getElementById("email").value;
+            document.getElementById("emailerror").style.color="red"
+             var email_length =Email.length ;
+            var flag;
+            if (email_length == 0)
+            {
+                document.getElementById("emailerror").innerHTML = "*This is required field."
+                return false
+            }
+            else 
+            {
+            for (var i = 0; i <= Email.length; i++) 
+            {
+                if (Email.slice(i, i + 1) == "@")
+                 {
+                    flag = 1;
+                }
+            }
+            if (flag != 1) 
+                {
+                    document.getElementById("emailerror").innerHTML = "*Invalid Email";
+                    return false
+                }
+            }
+        }
+    </script>  
+</body>
+
+</html>
